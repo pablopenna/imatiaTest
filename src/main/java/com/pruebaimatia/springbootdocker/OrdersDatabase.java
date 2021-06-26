@@ -1,7 +1,7 @@
 package com.pruebaimatia.springbootdocker;
 
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,8 +23,8 @@ public class OrdersDatabase {
         return orderDB.get(id);
     }
     
-    public static List<Order> getAllOrders(){
-        return (List<Order>)orderDB.values();
+    public static Collection<Order> getAllOrders(){
+        return orderDB.values();
     }
     
 }

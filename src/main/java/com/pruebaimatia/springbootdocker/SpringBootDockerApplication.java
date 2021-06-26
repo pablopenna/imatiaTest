@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class SpringBootDockerApplication {
-        // Build & Launch app
-        // ./mvnw package && java -jar target/spring-boot-docker-0.0.1-SNAPSHOT.jar
-        // Send tracking update
-        // curl -X POST -H "Content-Type: application/json" -d @orderJSON.json localhost:8080/order/tracking/
 
         @RequestMapping("/")
         public String home() {

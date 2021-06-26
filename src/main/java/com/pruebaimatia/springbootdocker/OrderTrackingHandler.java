@@ -18,8 +18,8 @@ public class OrderTrackingHandler {
             System.out.println("Order id:" + orderTracking.getOrderId());
             System.out.println("Order status:" + orderTracking.getTrackingStatusId());
             System.out.println("Order date:" + orderTracking.getChangeStatusDate());
-            
-            if(canSaveOrderData(orderTracking)){
+                    
+            if(isOrderTrackingDataValid(orderTracking) && canSaveOrderData(orderTracking)){
                 saveOrderData(orderTracking);
             }    
         }
@@ -55,6 +55,12 @@ public class OrderTrackingHandler {
     private static void saveOrderData(OrderTracking orderTracking){
         Order orderData = getOrderFromOrderTracking(orderTracking);
         OrdersDatabase.getData().put(orderData.getOrderId(), orderData);
+    }
+    
+    // Simple null check
+    private static boolean isOrderTrackingDataValid(OrderTracking orderTracking){
+        return  OrderStateEnum.getStateFromId(orderTracking.getTrackingStatusId()) != null
+                && orderTracking.getChangeStatusDate() != null;
     }
     
 }
