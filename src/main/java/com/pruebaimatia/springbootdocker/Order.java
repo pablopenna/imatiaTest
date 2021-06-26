@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pruebaimatia.springbootdocker;
 
 import com.pruebaimatia.springbootdocker.orderStates.OrderStateEnum;
@@ -10,6 +5,11 @@ import com.pruebaimatia.springbootdocker.orderStates.OrderStateEnum;
 /**
  *
  * @author Pablo
+ * 
+ * 
+ * Class representing and Order. Its data will be updated with the 
+ * tracking data received.
+ * 
  */
 public class Order {
     private int orderId;

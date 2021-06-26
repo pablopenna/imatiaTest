@@ -6,6 +6,10 @@ import com.pruebaimatia.springbootdocker.orderStates.OrderStateMachine;
 /**
  *
  * @author Pablo
+ * 
+ * Utility class used for handling the order updates received by the app.
+ * Its main functionality is to check if received updates are valid and if so
+ * update the orders data.
  */
 public class OrderTrackingHandler {
     
@@ -15,17 +19,9 @@ public class OrderTrackingHandler {
             System.out.println("Order status:" + orderTracking.getTrackingStatusId());
             System.out.println("Order date:" + orderTracking.getChangeStatusDate());
             
-            Order orderData = getOrderFromOrderTracking(orderTracking);
-            
-            if(!doesOrderAlreadyExist(orderData.getOrderId())){
-                saveOrderData(orderData);
-            } else {
-                Order originalOrderData = OrdersDatabase.getOrderById(orderData.getOrderId());
-                if(OrderStateMachine.canTransitionTo(originalOrderData.getState(), orderData.getState())){
-                    saveOrderData(orderData);
-                } 
-            }
-                
+            if(canSaveOrderData(orderTracking)){
+                saveOrderData(orderTracking);
+            }    
         }
     }
     
@@ -37,7 +33,27 @@ public class OrderTrackingHandler {
         return OrdersDatabase.getData().containsKey(orderId);
     }
     
-    private static void saveOrderData(Order orderData){
+    private static boolean canSaveOrderData(OrderTracking orderTracking){
+        
+        boolean canSaveOrderData = false;
+        
+        if(doesOrderAlreadyExist(orderTracking.getOrderId())){
+            Order originalOrderData = OrdersDatabase.getOrderById(orderTracking.getOrderId());
+            if(OrderStateMachine.canTransitionTo(
+                    originalOrderData.getState(), 
+                    OrderStateEnum.getStateFromId(orderTracking.getTrackingStatusId()))
+            ){
+                canSaveOrderData = true;
+            }
+        } else {
+            canSaveOrderData = true;
+        }
+        
+        return canSaveOrderData;
+    }
+    
+    private static void saveOrderData(OrderTracking orderTracking){
+        Order orderData = getOrderFromOrderTracking(orderTracking);
         OrdersDatabase.getData().put(orderData.getOrderId(), orderData);
     }
     

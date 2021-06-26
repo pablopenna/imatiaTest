@@ -9,6 +9,10 @@ import java.util.Map;
  *
  * @author Pablo
  * 
+ * State Machine for Order States. It contains the valid transitions among 
+ * states and provides functionality to check if a transition between two given
+ * states is valid.
+ * 
  * Doing states static as a way of only creating one of each. 
  * We do not want/it is not needed to instance more than one.
  */

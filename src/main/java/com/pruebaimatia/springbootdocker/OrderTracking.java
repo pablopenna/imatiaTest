@@ -1,16 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pruebaimatia.springbootdocker;
 
 import java.util.Date;
-import java.text.SimpleDateFormat;
 
 /**
  *
  * @author Pablo
+ * 
+ * Represents the units of data received by the app. 
+ * Each one of the instances of this class represents
+ * an update on the data of single Order.
  */
 public class OrderTracking {
     private final int orderId;
@@ -34,6 +32,5 @@ public class OrderTracking {
     public Date getChangeStatusDate() {
         return changeStatusDate;
     }
-    
     
 }

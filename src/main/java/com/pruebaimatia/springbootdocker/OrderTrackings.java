@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pruebaimatia.springbootdocker;
 
 import java.util.List;
@@ -10,6 +5,10 @@ import java.util.List;
 /**
  *
  * @author Pablo
+ * 
+ * Wrapper for the OrderTracking class. This class is used so Spring Boot can
+ * properly parse and cast the body of the requests received.
+ * 
  */
 public class OrderTrackings {
     

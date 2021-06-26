@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pruebaimatia.springbootdocker;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,7 +9,7 @@ import java.util.Map;
  * @author Pablo
  * 
  * Order data should be store in a Database, but due to time constrains and that
- * this is only sample app, I will store Order data in memory.
+ * this is only sample app, Order data will be stored in memory.
  */
 public class OrdersDatabase {
     
@@ -25,6 +21,10 @@ public class OrdersDatabase {
     
     public static Order getOrderById(int id){
         return orderDB.get(id);
+    }
+    
+    public static List<Order> getAllOrders(){
+        return (List<Order>)orderDB.values();
     }
     
 }

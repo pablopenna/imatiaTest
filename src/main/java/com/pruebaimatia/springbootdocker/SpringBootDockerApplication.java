@@ -1,10 +1,8 @@
 package com.pruebaimatia.springbootdocker;
 
-import com.pruebaimatia.springbootdocker.orderStates.OrderStateEnum;
 import org.json.simple.JSONArray;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,7 +27,7 @@ public class SpringBootDockerApplication {
                 value="/order/tracking/")
         public JSONArray getOrders() {
             JSONArray jsonArray = new JSONArray();
-            for(Order order : OrdersDatabase.getData().values()){
+            for(Order order : OrdersDatabase.getAllOrders()){
                 System.out.println("------------");
                 System.out.println("Order id:" + order.getOrderId());
                 System.out.println("Order status:" + order.getState());
